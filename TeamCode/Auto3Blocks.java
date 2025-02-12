@@ -54,6 +54,8 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
+//can i edit this like this?
+
 @Autonomous(name="Auto 3 Blocks", group="Autonomous")
 public class Auto3Blocks extends LinearOpMode {
 
