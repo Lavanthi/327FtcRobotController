@@ -41,6 +41,7 @@ public class AutoJ extends LinearOpMode {
             telemetry.update();
         }
 
+        /// yap yap pay 
         leftDrive.setPower(0);
         rightDrive.setPower(0);
 
