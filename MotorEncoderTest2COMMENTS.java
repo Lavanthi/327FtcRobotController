@@ -127,7 +127,8 @@ public class MotorEncoderTest2 extends LinearOpMode {
         //okok so ik we aren't using sleep function, but here is serves the purpose of giving the code a pause. this can be helpful so that the arm extends and doesn't automatically do anything too fast
         sleep(2000);
 
-        //here I am calling a function. I like to use functions to avoid being repetitive, plus it makes it easier to read. go to line 270 for this function. 
+        //here I am calling a function. I like to use functions to avoid being repetitive, plus it makes it easier to read. go to around line 270 for this function. 
+        // as you can see after looking at the defined function, this will (we hope) hold the arm to position 60, at a speed of 0.05
         //extend
         armLinearHold(60, 0.05);
         //drive
@@ -291,12 +292,23 @@ public class MotorEncoderTest2 extends LinearOpMode {
         while (opModeIsActive() && motorArmLinearSlide.isBusy()){
 
             // the first part (telemetry.addData) is telling it that while the opmode and motor arm linear slide motor are going at the same time, to show this on the driver hub
+            // the part in the parenthesis ("Arm Linear Slide is holding at:") is the text that will show on the driver hub.
+            // the (motorArmLinearSlide.getCurrentPosition()) is, well, getting the position of the motor.
             telemetry.addData("Arm Linear Slide is holding at:", motorArmLinearSlide.getCurrentPosition());
+
+            // as you can guess this updates the telemetry on the driver hub 
             telemetry.update();
         }
 
+        // after it does its thing, we can set the power to 0 to make sure it is fully off
+        
         motorArmLinearSlide.setPower(0);
+
+        // here, the sleep is used to make sure that the next code doesn't happen right away, but give a small pause
         sleep(200);
+
+        // same thing as earlier, this shows the position on the driver hub.
+        // Notice this is outside of the while loop. So is goes when the arm motor stops going.
         telemetry.addData("Arm Linear has reached target:", motorArmLinearSlide.getCurrentPosition());
 
     }
