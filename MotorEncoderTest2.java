@@ -114,9 +114,11 @@ public class MotorEncoderTest2 extends LinearOpMode {
         armPos += armTarget;
 
         //set target position of the motor to the arm position
+        
         motorArm.setTargetPosition(armPos);
 
         //run the motor arm to the position
+        
         motorArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         //set the speed that the motor does this at
@@ -125,6 +127,7 @@ public class MotorEncoderTest2 extends LinearOpMode {
         //okok so ik we aren't using sleep function, but here is serves the purpose of giving the code a pause. this can be helpful so that the arm extends and doesn't automatically do anything too fast
         sleep(2000);
 
+        //here I am calling a function. I like to use functions to avoid being repetitive, plus it makes it easier to read. go to line 270 for this function. 
         //extend
         armLinearHold(60, 0.05);
         //drive
@@ -273,13 +276,21 @@ public class MotorEncoderTest2 extends LinearOpMode {
 
     }
 
+    // here is the function to -supposedly- hold the arm. it takes two arguments of the target of the arm (what we will set the position to) and the speed
     private void armLinearHold(int armLinearTarget, double armLinearSpeed){
+
+        // this follows the same thingy where we take the position that is initially at 0 and then add the target so that it has a new position
+
         motorArmLinearSlidePos += armLinearTarget;
         motorArmLinearSlide.setTargetPosition(motorArmLinearSlidePos);
         motorArmLinearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorArmLinearSlide.setPower(armLinearSpeed);
 
+        // this part is not required, but nice because it will show on the driver hub when the code is running the position of the motor. 
+        // so it checks if the auto mode is going and if the motor is going
         while (opModeIsActive() && motorArmLinearSlide.isBusy()){
+
+            // the first part (telemetry.addData) is telling it that while the opmode and motor arm linear slide motor are going at the same time, to show this on the driver hub
             telemetry.addData("Arm Linear Slide is holding at:", motorArmLinearSlide.getCurrentPosition());
             telemetry.update();
         }
