@@ -38,6 +38,7 @@ public class autoUpdateJ extends LinearOpMode {
         backLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
         backRightMotor.setPower(0);
+        sleep(1000);
 
         servoRotate.setPower(-1);
         sleep(8000);
